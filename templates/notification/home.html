@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Welcome</title>
+        <META HTTP-EQUIV="refresh" CONTENT="3">
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+		<h3>hello {{ user.username }}</h3>
+			{% if  stocks_names%}
+				<strong>Your subscribed stocks are:</strong>
+				<ul>
+					{% for stock in stocks_names %}
+					<li>{{ stock }}</li>
+					{% endfor %}
+				</ul>
+			{% else %}
+
+				<strong>You are subscribed for any stock.</strong>
+
+
+			{% endif %}
+
+			{% if  logs%}
+				<strong>Notification Dashboard</strong>
+				<table border="1">
+					{% for log in logs %}
+					<tr>
+						
+						<td>Updated value of Your stock {{log.stock_name}} is {{log.stock_price}} at {{log.time}}</td>
+						
+
+					</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+
+			{% endif %}
+
+		{% endif %}
+
+    </body>
+</html>
